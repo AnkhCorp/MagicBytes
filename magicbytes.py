@@ -35,7 +35,7 @@ with open(inputfile, 'rb') as f:
     content = f.read().hex()
     if magic == "png": 
         content = content.replace(content[0:24], png_hex[2:])
-    elif magic == "jpeg" or "jpg":
+    elif magic in ["jpeg", "jpg"]:
         content = content.replace(content[0:24], jpg_hex[2:])
 
 
