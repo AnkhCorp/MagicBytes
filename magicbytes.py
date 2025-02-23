@@ -20,6 +20,10 @@ jpg = "0xFFD8FFE000104A4649460001"
 jpg_int = int(jpg, 16)
 jpg_hex = hex(jpg_int)
 
+gif = "0x4749463839612100000000"
+gif_int = int(gif, 16)
+gif_hex = hex(gif_int)
+
 if len(sys.argv) != 5:
     print("Example usage: magicbytes.py -i broken.png -m png")
     exit()
@@ -27,8 +31,8 @@ if len(sys.argv) != 5:
 inputfile = sys.argv[2]
 magic = sys.argv[4]
 
-if magic != "png" and magic != "jpg" and magic != "jpeg": 
-    print("Magicbytes.py only supports png, jpeg and jpg!")
+if magic != "png" and magic != "jpg" and magic != "jpeg" and magic != "gif": 
+    print("Magicbytes.py only supports png, jpeg, jpg and gif!")
     exit()
 
 with open(inputfile, 'rb') as f:
@@ -37,6 +41,8 @@ with open(inputfile, 'rb') as f:
         content = content.replace(content[0:24], png_hex[2:])
     elif magic == "jpeg" or "jpg":
         content = content.replace(content[0:24], jpg_hex[2:])
+    elif magic == "gif":
+        content = content.replace(content[0:24], gif_hex[2:])
 
 
 with open(inputfile, 'wb') as f:
